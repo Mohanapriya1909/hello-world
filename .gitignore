@@ -1,6 +1,10 @@
+# Ignore build output and temporary files
 target/
 *.class
 *.log
+*.jar
+*.war
 *.iml
 .idea/
 *.swp
+.DS_Store
