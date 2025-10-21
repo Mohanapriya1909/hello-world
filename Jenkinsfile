@@ -31,12 +31,23 @@ pipeline {
     }
 
     stage('Sonar Analysis') {
-      steps {
-        withCredentials([string(credentialsId: "${SONAR_TOKEN_CREDENTIAL_ID}", variable: 'SONAR_TOKEN')]) {
-          sh "mvn -B sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.host.url=${SONAR_HOST_URL}"
-        }
-      }
+  steps {
+    withCredentials([
+      string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN'),
+      string(credentialsId: 'sonar-org', variable: 'SONAR_ORG')
+    ]) {
+      sh """
+        mvn -B sonar:sonar \
+          -Dsonar.login=${SONAR_TOKEN} \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.organization=${SONAR_ORG} \
+          -Dsonar.projectKey=mohanapriya1909_hello-world \
+          -Dsonar.projectName="hello-world"
+      """
     }
+  }
+}
+
 
     stage('Build Docker image & Push to ECR') {
       environment {
