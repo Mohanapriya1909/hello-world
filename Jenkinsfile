@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     AWS_REGION = "us-east-1"
-    ECR_REPO = "https://github.com/Mohanapriya1909/hello-world.git" // replace with your repo URI
+    ECR_REPO = "060795904368.dkr.ecr.us-east-1.amazonaws.com/hello-world" // replace with your repo URI
     IMAGE_TAG = "${env.BUILD_NUMBER}"
     SONAR_HOST_URL = "https://sonarcloud.io"
     SONAR_TOKEN_CREDENTIAL_ID = "sonar-token"
