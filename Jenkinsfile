@@ -20,7 +20,7 @@ pipeline {
     stage('Build & Test') {
       tools { maven 'Maven-3.8.6' } // only if you configured tool; otherwise ensure mvn is on PATH
       steps {
-        sh 'mvn -B -DskipTests=false clean test'
+        sh 'mvn -B -DskipTests=false clean package'
       }
       post {
         always {
